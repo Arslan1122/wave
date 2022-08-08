@@ -13,6 +13,9 @@
 
 
 // Authentication routes
+use Goutte\Client;
+
+
 Auth::routes();
 
 
@@ -22,3 +25,4 @@ Route::group(['prefix' => 'admin'], function () {
 
 // Include Wave Routes
 Wave::routes();
+

@@ -27,6 +27,11 @@ return [
 
     'sparkpost' => [
         'secret' => env('SPARKPOST_SECRET'),
+    ],
+
+    'finscreener' => [
+        'get_idcp_url' => env('IDCP_URL','https://www.finscreener.org/enginejs/cache/maptypy/map_typ_2.json'),
+        'get_stock_url' => env('STOCK_URL', 'https://ws.finscreener.org:8443/overstocks/get'),
     ]
 
 ];

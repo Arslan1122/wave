@@ -4,14 +4,9 @@ if (!class_exists(WaveKeyValueConvertible::class)) {
     class WaveKeyValueConvertible
     {
         public function toObject() {
-
             $array = (array)$this;
 
-            if (is_array($this)) {
-                return (object)$array;
-            }
-
-            return $this;
+            return (object)$array;
         }
     }
 }

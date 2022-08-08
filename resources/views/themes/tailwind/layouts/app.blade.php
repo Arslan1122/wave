@@ -44,6 +44,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
+
+    @livewireStyles
 </head>
 <body class="flex flex-col min-h-screen @if(Request::is('/')){{ 'bg-white' }}@else{{ 'bg-gray-50' }}@endif @if(config('wave.dev_bar')){{ 'pb-10' }}@endif">
 
@@ -54,6 +56,7 @@
     @include('theme::partials.header')
 
     <main class="flex-grow overflow-x-hidden">
+
         @yield('content')
     </main>
 
@@ -82,5 +85,6 @@
     @endif
     @waveCheckout
 
+    @livewireScripts
 </body>
 </html>
