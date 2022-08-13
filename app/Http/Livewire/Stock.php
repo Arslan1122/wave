@@ -13,7 +13,7 @@ class Stock extends Component
     public function render()
     {
         $attributes = StockAttribute::all();
-        $stocks = \App\Stock::with(['values', 'values.attribute'])->paginate(15);
+        $stocks = \App\Stock::with(['values', 'values.attribute'])->paginate(10);
         return view('livewire.stock', ['attributes' => $attributes, 'stocks' => $stocks]);
     }
 
