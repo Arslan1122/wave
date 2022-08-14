@@ -1,7 +1,11 @@
 @extends('theme::layouts.app')
 
-@section('content')
+@section('google-script')
+   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@endsection
 
+@section('content')
+    {!! RecaptchaV3::initJs() !!}
     <div class="flex flex-col justify-center py-20 sm:px-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
             <h2 class="mt-6 text-3xl font-extrabold leading-9 text-center text-gray-900 lg:text-5xl">
@@ -20,7 +24,6 @@
                 <form action="#" method="POST">
                     @csrf
                     <div>
-
                         @if(setting('auth.email_or_username') && setting('auth.email_or_username') == 'username')
                             <label for="username" class="block text-sm font-medium leading-5 text-gray-700">Username</label>
                             <div class="mt-1 rounded-md shadow-sm">
@@ -61,7 +64,18 @@
                             </div>
                         @endif
                     </div>
-
+                    @if(\Session::has('showrecaptcha'))
+                    <div class="mt-4">
+                        <!-- Google reCaptcha -->
+                        <div class="g-recaptcha" id="feedback-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}">
+                        </div>
+                        @if ($errors->has('g-recaptcha-response'))
+                            <div class="mt-1 text-red-500">
+                                {{ $errors->first('g-recaptcha-response') }}
+                            </div>
+                        @endif
+                    </div>
+                    @endif
                     <div class="flex items-center justify-between mt-6">
                         <div class="flex items-center">
                             <input id="remember" name="remember" type="checkbox" class="text-indigo-600 border-0 border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50 rounded-xl" {{ old('remember') ? ' checked' : '' }}>
@@ -89,5 +103,4 @@
             </div>
         </div>
     </div>
-
 @endsection
